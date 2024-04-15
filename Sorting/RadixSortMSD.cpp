@@ -35,11 +35,11 @@ static void Recursive(int *arr, int count, int exp)
 		counting[digit] += 1;
 	}
 
-	int **buckets = new int*[10];
-	int bucket_sizes[10] = {0};
+	int *buckets[10];
 	for(int i = 0; i < 10; i++)
 		buckets[i] = new int[counting[i]];
 	
+	int bucket_sizes[10] = {0};
 	for(int i = 0; i < count; i++)
 	{
 		int digit = (arr[i] / exp) % 10;
@@ -55,5 +55,4 @@ static void Recursive(int *arr, int count, int exp)
 			arr[index++] = buckets[i][j];
 		delete[] buckets[i];
 	}
-	delete[] buckets;
 }
