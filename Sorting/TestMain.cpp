@@ -6,25 +6,27 @@
 using namespace std;
 
 static int* generateRandomArr(int& count);
-static bool PrintArr(int *arr, int count);
+static bool PrintArr(const char *title, int *arr, int count);
 
 int main()
 {
 	int count;
 	int *arr = generateRandomArr(count); // 랜덤 배열 생성
 
-	cout << "Before: " << endl;
-	PrintArr(arr, count);
+	PrintArr("Before: ", arr, count);
 	
-	BubbleSort(arr, count);
+	// BubbleSort(arr, count);
 	// InsertionSort(arr, count);
 	// QuickSort(arr, count);
 
 	// MergeSort(arr, 0, count - 1);
 	// QuickSort(arr, 0, count - 1);
 
-	cout << "After: " << endl;
-	bool sorted = PrintArr(arr, count);
+	// CountingSort(arr, count);
+	// RadixSortLSD(arr, count);
+	RadixSortMSD(arr, count);
+
+	bool sorted = PrintArr("After: ", arr, count);
 	cout << "[sorted] " << boolalpha << sorted << endl;
 
 	delete[] arr;
@@ -44,10 +46,11 @@ static int* generateRandomArr(int& count)
 	return arr;
 }
 
-static bool PrintArr(int *arr, int count)
+static bool PrintArr(const char *title, int *arr, int count)
 {
 	bool sorted = true;
 
+	cout << title << ": " << endl;
 	for(int i = 0; i < count; i++)
 	{
 		if (i+1 < count && arr[i] > arr[i+1])
